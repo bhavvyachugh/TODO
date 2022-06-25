@@ -40,3 +40,8 @@ export const postSignupHandler = async (req, res) => {
 		return res.status(500).send(err);
 	}
 };
+
+
+export const getLoginHandler = (req, res) => {
+	res.render('login')
+}
