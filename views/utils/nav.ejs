@@ -1,16 +1,14 @@
-<link rel="stylesheet" href="/css/nav.css" />
+<%- include('./links') %>
 <header>
-	<nav class="nav">
-		<h1 class="nav-heading">TODO</h1>
+	<nav class="navbar bg-light p-3">
+		<div class="container-fluid">
+			<a href="/" class="navbar-brand">TODO</a>
 
-		<ul class="nav-list">
-			<li class="button">
-				<a href="/signup">Signup</a>
-			</li>
-
-			<li class="button">
-				<a href="/login">Login</a>
-			</li>
-		</ul>
+			<div>
+				<a href="/login" class="btn btn-primary m-2">Login</a>
+				<a href="/signup" class="btn btn-primary m-2">Signup</a>
+				<a href="/signup" class="btn btn-primary m-2">Logout</a>
+			</div>
+		</div>
 	</nav>
 </header>

@@ -5,31 +5,57 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-		<link rel="stylesheet" href="/css/form.css" />
 
 		<title>Signup</title>
 	</head>
 	<body>
 		<%- include('./utils/nav') %>
 
-		<div class="container">
-			<div class="image">
-				<img src="/images/signup.svg" alt="signup" />
+		<div
+			class="container-fluid vh-100 d-flex align-items-center justify-content-center"
+		>
+			<div
+				class="d-flex shadow rounded-3 align-items-center justify-content-between w-75 p-5"
+			>
+				<div>
+					<img class="w-75" src="/images/signup.svg" alt="signup" />
+				</div>
+
+				<form class="w-50" action="/signup" method="POST">
+					<div class="mb-3">
+						<label for="name" class="form-label">Name</label>
+						<input type="text" class="form-control" id="name" name="name" />
+					</div>
+					<div class="mb-3">
+						<label for="email" class="form-label">Email address</label>
+						<input type="email" class="form-control" id="email" name="email" />
+					</div>
+					<div class="mb-3">
+						<label for="phone" class="form-label">Phone</label>
+						<input type="number" class="form-control" id="phone" name="phone" />
+					</div>
+					<div class="mb-3">
+						<label for="password" class="form-label">Password</label>
+						<input
+							type="password"
+							class="form-control"
+							name="password"
+							id="password"
+						/>
+					</div>
+					<div class="mb-3">
+						<label for="cpassword" class="form-label">Confirm Password</label>
+						<input
+							type="password"
+							class="form-control"
+							name="cpassword"
+							id="cpassword"
+						/>
+					</div>
+
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</form>
 			</div>
-
-			<form action="/signup" class="form" method="POST">
-				<input type="text" name="name" placeholder="Name" />
-				<input type="email" name="email" placeholder="Email" />
-				<input type="number" name="phone" placeholder="Phone" />
-				<input type="password" name="password" placeholder="Password" />
-				<input
-					type="password"
-					name="cpassword"
-					placeholder="Confirm Password"
-				/>
-
-				<button class="button" type="submit">Submit</button>
-			</form>
 		</div>
 	</body>
 </html>

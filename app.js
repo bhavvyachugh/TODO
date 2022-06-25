@@ -4,6 +4,7 @@ import { config } from 'dotenv';
 import path from 'path';
 
 import authRouter from './routes/auth.routes.js';
+import todoRouter from './routes/todo.routes.js';
 
 config();
 
@@ -17,6 +18,7 @@ app.set('views', path.resolve('views')); // to tell express where views are pres
 /* --------------------------------- routes --------------------------------- */
 
 app.use(authRouter);
+app.use(todoRouter);
 
 //TODO: create 404 page
 

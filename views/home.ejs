@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>TODO</title>
+
+		<%- include('./utils/links') %>
+	</head>
+	<body>
+		<%- include('./utils/nav') %>
+		<div class="m-5">
+			<form action="/todo" method="POST">
+				<div class="mb-3">
+					<label for="title" class="form-label">Title</label>
+					<input
+						type="text"
+						class="form-control"
+						name="title"
+						id="title"
+						placeholder="Bring Groceries"
+					/>
+				</div>
+				<div class="mb-3">
+					<label for="description" class="form-label">Description</label>
+					<textarea
+						class="form-control"
+						name="description"
+						id="description"
+						rows="3"
+					></textarea>
+				</div>
+
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+
+			<ul class="list-group mt-5">
+				<li class="list-group-item">
+					<input class="form-check-input me-1" type="checkbox" />
+					First checkbox
+				</li>
+				<li class="list-group-item">
+					<input
+						class="form-check-input me-1"
+						type="checkbox"
+						value=""
+						aria-label="..."
+					/>
+					Second checkbox
+				</li>
+				<li class="list-group-item">
+					<input
+						class="form-check-input me-1"
+						type="checkbox"
+						value=""
+						aria-label="..."
+					/>
+					Third checkbox
+				</li>
+				<li class="list-group-item">
+					<input
+						class="form-check-input me-1"
+						type="checkbox"
+						value=""
+						aria-label="..."
+					/>
+					Fourth checkbox
+				</li>
+				<li class="list-group-item">
+					<input
+						class="form-check-input me-1"
+						type="checkbox"
+						value=""
+						aria-label="..."
+					/>
+					Fifth checkbox
+				</li>
+			</ul>
+		</div>
+	</body>
+</html>

@@ -5,24 +5,39 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-		<link rel="stylesheet" href="/css/form.css" />
-
 		<title>Login</title>
 	</head>
 	<body>
 		<%- include('./utils/nav') %>
 
-		<div class="container padding-large">
-			<div class="image">
-				<img src="/images/login.svg" alt="signup" />
+		<div
+			class="container-fluid vh-100 d-flex align-items-center justify-content-center"
+		>
+			<div
+				class="d-flex shadow rounded-3 align-items-center justify-content-between w-75 p-5"
+			>
+				<div>
+					<img class="w-75" src="/images/login.svg" alt="signup" />
+				</div>
+
+				<form class="w-50" action="/login" method="POST">
+					<div class="mb-3">
+						<label for="email" class="form-label">Email address</label>
+						<input type="email" class="form-control" id="email" name="email" />
+					</div>
+					<div class="mb-3">
+						<label for="password" class="form-label">Password</label>
+						<input
+							type="password"
+							class="form-control"
+							name="password"
+							id="password"
+						/>
+					</div>
+
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</form>
 			</div>
-
-			<form action="/login" class="form" method="POST">
-				<input type="email" name="email" placeholder="Email" />
-				<input type="password" name="password" placeholder="Password" />
-
-				<button class="button" type="submit">Submit</button>
-			</form>
 		</div>
 	</body>
 </html>
