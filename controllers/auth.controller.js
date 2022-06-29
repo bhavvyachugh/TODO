@@ -1,5 +1,6 @@
 import User from '../models/user.model.js';
 import { hash, genSalt } from 'bcrypt';
+import { generateJwt } from '../helpers/jwt.helper.js';
 
 export const getSignupHandler = (req, res) => {
 	res.render('signup');
@@ -41,7 +42,23 @@ export const postSignupHandler = async (req, res) => {
 	}
 };
 
-
 export const getLoginHandler = (req, res) => {
-	res.render('login')
-}
+	res.render('login');
+};
+
+export const postLoginHandler = async (req, res) => {
+	const { email, password } = req.body;
+
+	const user = await User.findOne({ email });
+
+	if (!user) return res.status(404).send('User not found');
+
+	const token = generateJwt({ id: user._id });
+
+	res
+		.cookie('token', token, {
+			httpOnly: true,
+			secure: true,
+		})
+		.redirect('/');
+};
