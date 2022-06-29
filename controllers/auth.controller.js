@@ -29,14 +29,21 @@ export const postSignupHandler = async (req, res) => {
 
 		const hashedPassword = await hash(password, salt);
 
-		await User.create({
+		const user = await User.create({
 			name,
 			email,
 			phone,
 			password: hashedPassword,
 		});
 
-		res.redirect('/signup');
+		const token = generateJwt({ id: user._id });
+
+		res
+			.cookie('token', token, {
+				httpOnly: true,
+				secure: true,
+			})
+			.redirect('/');
 	} catch (err) {
 		return res.status(500).send(err);
 	}
