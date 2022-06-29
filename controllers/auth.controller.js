@@ -1,5 +1,5 @@
 import User from '../models/user.model.js';
-import { hash, genSalt } from 'bcrypt';
+import { hash, genSalt, compare } from 'bcrypt';
 import { generateJwt } from '../helpers/jwt.helper.js';
 
 export const getSignupHandler = (req, res) => {
@@ -60,6 +60,11 @@ export const postLoginHandler = async (req, res) => {
 
 	if (!user) return res.status(404).send('User not found');
 
+	const isPasswordCorrect = await compare(password, user.password);
+
+	if (!isPasswordCorrect)
+		return res.status(401).send('password is not correct');
+
 	const token = generateJwt({ id: user._id });
 
 	res
@@ -68,4 +73,8 @@ export const postLoginHandler = async (req, res) => {
 			secure: true,
 		})
 		.redirect('/');
+};
+
+export const getLogoutHandler = (req, res) => {
+	res.clearCookie('token').redirect('/');
 };

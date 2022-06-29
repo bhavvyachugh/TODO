@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import { config } from 'dotenv';
+import cookieParser from 'cookie-parser';
 import path from 'path';
 
 import authRouter from './routes/auth.routes.js';
@@ -14,6 +15,8 @@ app.use(express.urlencoded({ extended: true })); // to parse form data
 app.use(express.static(path.resolve('static'))); // to tell express where static files are present
 app.set('view engine', 'ejs'); // to tell express which view template engine to use
 app.set('views', path.resolve('views')); // to tell express where views are present
+
+app.use(cookieParser());
 
 /* --------------------------------- routes --------------------------------- */
 
