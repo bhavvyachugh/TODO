@@ -36,46 +36,12 @@
 			</form>
 
 			<ul class="list-group mt-5">
+				<% todos.forEach(todo => { %>
 				<li class="list-group-item">
 					<input class="form-check-input me-1" type="checkbox" />
-					First checkbox
+					<%= todo.title %>
 				</li>
-				<li class="list-group-item">
-					<input
-						class="form-check-input me-1"
-						type="checkbox"
-						value=""
-						aria-label="..."
-					/>
-					Second checkbox
-				</li>
-				<li class="list-group-item">
-					<input
-						class="form-check-input me-1"
-						type="checkbox"
-						value=""
-						aria-label="..."
-					/>
-					Third checkbox
-				</li>
-				<li class="list-group-item">
-					<input
-						class="form-check-input me-1"
-						type="checkbox"
-						value=""
-						aria-label="..."
-					/>
-					Fourth checkbox
-				</li>
-				<li class="list-group-item">
-					<input
-						class="form-check-input me-1"
-						type="checkbox"
-						value=""
-						aria-label="..."
-					/>
-					Fifth checkbox
-				</li>
+				<% }) %>
 			</ul>
 		</div>
 	</body>

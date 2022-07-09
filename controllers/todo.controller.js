@@ -1,8 +1,14 @@
 import Todo from '../models/todo.model.js';
 import User from '../models/user.model.js';
 
-export const getHomeHandler = (req, res) => {
-	res.render('home');
+export const getHomeHandler = async (req, res) => {
+	const loggedInUserId = res.locals.user;
+
+	const user = await User.findById(loggedInUserId).populate('tasks');
+
+	res.render('home', {
+		todos: user.tasks,
+	});
 };
 
 export const postTodoHandler = async (req, res) => {
