@@ -4,6 +4,7 @@ import { config } from 'dotenv';
 import cookieParser from 'cookie-parser';
 import path from 'path';
 
+import deserializeUser from './middleware/deserializeUser.middleware.js';
 import authRouter from './routes/auth.routes.js';
 import todoRouter from './routes/todo.routes.js';
 
@@ -17,6 +18,8 @@ app.set('view engine', 'ejs'); // to tell express which view template engine to 
 app.set('views', path.resolve('views')); // to tell express where views are present
 
 app.use(cookieParser());
+
+app.use(deserializeUser);
 
 /* --------------------------------- routes --------------------------------- */
 
