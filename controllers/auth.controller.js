@@ -1,6 +1,6 @@
-import User from '../models/user.model.js';
-import { hash, genSalt, compare } from 'bcrypt';
+import { compare, genSalt, hash } from 'bcrypt';
 import { generateJwt } from '../helpers/jwt.helper.js';
+import User from '../models/user.model.js';
 
 export const getSignupHandler = (req, res) => {
 	res.render('signup');
@@ -50,7 +50,9 @@ export const postSignupHandler = async (req, res) => {
 };
 
 export const getLoginHandler = (req, res) => {
-	res.render('login');
+	res.render('login', {
+		isUserLoggedIn: res.locals.user ? true : false,
+	});
 };
 
 export const postLoginHandler = async (req, res) => {

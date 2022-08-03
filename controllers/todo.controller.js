@@ -7,7 +7,8 @@ export const getHomeHandler = async (req, res) => {
 	const user = await User.findById(loggedInUserId).populate('tasks');
 
 	res.render('home', {
-		todos: user.tasks,
+		isUserLoggedIn: res.locals.user ? true : false,
+		todos: user && user.tasks.length > 0 ? user.tasks : [],
 	});
 };
 

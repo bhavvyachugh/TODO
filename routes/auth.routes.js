@@ -9,12 +9,10 @@ import {
 
 const authRouter = Router();
 
-authRouter.get('/signup', getSignupHandler);
-authRouter.post('/signup', postSignupHandler);
+authRouter.route('/signup').get(getSignupHandler).post(postSignupHandler);
 
-authRouter.get('/login', getLoginHandler);
-authRouter.post('/login', postLoginHandler);
+authRouter.route('/login').get(getLoginHandler).post(postLoginHandler);
 
-authRouter.get('/logout', getLogoutHandler);
+authRouter.route('/logout').get(getLogoutHandler);
 
 export default authRouter;
