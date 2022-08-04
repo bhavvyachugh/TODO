@@ -29,3 +29,26 @@ export const postTodoHandler = async (req, res) => {
 
 	res.redirect('/');
 };
+
+export const deleteTodoHandler = async (req, res) => {
+	const { id } = req.params;
+
+	try {
+		await Todo.findByIdAndDelete(id);
+
+		const userId = res.locals.user;
+
+		const userFromDB = await User.findById(userId);
+
+		const filteredTasks = userFromDB.tasks.filter(
+			task => task.toString() !== id
+		);
+
+		userFromDB.tasks = filteredTasks;
+		userFromDB.save();
+
+		res.redirect('/');
+	} catch (err) {
+		res.status(500).send(err);
+	}
+};
