@@ -3,7 +3,9 @@ import { generateJwt } from '../helpers/jwt.helper.js';
 import User from '../models/user.model.js';
 
 export const getSignupHandler = (req, res) => {
-	res.render('signup');
+	res.render('signup', {
+		isUserLoggedIn: res.locals.user ? true : false,
+	});
 };
 
 export const postSignupHandler = async (req, res) => {

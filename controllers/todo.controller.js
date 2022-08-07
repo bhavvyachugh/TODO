@@ -1,6 +1,29 @@
 import Todo from '../models/todo.model.js';
 import User from '../models/user.model.js';
 
+export const postTodoHandler = async (req, res) => {
+	const { title, description } = req.body;
+	const loggedInUserId = res.locals.user;
+
+	if (!title || !description)
+		return res.status(401).send('Please provide title and description');
+
+	const newTodo = await Todo.create({
+		title,
+		description,
+	});
+
+	const loggedInUser = await User.findById(loggedInUserId);
+
+	if (!loggedInUser) return res.status(401).send('Please login to create');
+
+	loggedInUser.tasks.push(newTodo._id);
+
+	loggedInUser.save();
+
+	res.redirect('/');
+};
+
 export const getHomeHandler = async (req, res) => {
 	const loggedInUserId = res.locals.user;
 
@@ -12,23 +35,7 @@ export const getHomeHandler = async (req, res) => {
 	});
 };
 
-export const postTodoHandler = async (req, res) => {
-	const { title, description } = req.body;
-	const loggedInUserId = res.locals.user;
-
-	const newTodo = await Todo.create({
-		title,
-		description,
-	});
-
-	const loggedInUser = await User.findById(loggedInUserId);
-
-	loggedInUser.tasks.push(newTodo._id);
-
-	loggedInUser.save();
-
-	res.redirect('/');
-};
+// UPdate Todo
 
 export const deleteTodoHandler = async (req, res) => {
 	const { id } = req.params;
